@@ -6,11 +6,11 @@ from django.contrib import admin
 from django.contrib.sitemaps.views import sitemap
 from django.urls import include, path
 
-from djangocms_static.views import create_html_files
+from djangocms_static.views import StaticSiteGenerator
 
 admin.autodiscover()
 
 
 urlpatterns = [
-    path("generate/", create_html_files, name='generate'),
+    path("generate/", StaticSiteGenerator.as_view(), name='generate'),
 ]

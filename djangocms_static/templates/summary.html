@@ -1,0 +1,27 @@
+{% extends "admin/base.html" %}
+{% load i18n admin_list static admin_urls cms_admin cms_js_tags cms_static cms_tags %}
+
+{% block extrahead %}
+    {{ block.super }}
+    {# INFO: we need to add styles here instead of "extrastyle" to avoid conflicts with adminstyle #}
+    <link rel="stylesheet" href="{% static_with_version 'cms/css/cms.base.css' %}">
+    <link rel="stylesheet" href="{% static_with_version 'cms/css/cms.pagetree.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'djangocms_admin_style/css/djangocms-admin.css' %}" />
+    <script src="{% static_with_version 'cms/js/dist/bundle.admin.base.min.js' %}"></script>
+    <script src="{% static_with_version 'cms/js/dist/bundle.admin.pagetree.min.js' %}"></script>
+{% endblock extrahead %}
+
+{% block breadcrumbs %}{% endblock %}
+{% block header %}{% endblock %}
+
+{% block content %}
+  <h5>{% trans 'Location of the created pages:' %}</h5>
+  <p><strong>{{ storage_path }}</strong></p>
+  <p><em>{% trans 'You can now upload the full directory to your server.' %}</em></p>
+  <h5>{% trans 'Pages created' %}:</h5>
+  <ul>
+    {% for page in pages %}
+    <li>{{ page }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
